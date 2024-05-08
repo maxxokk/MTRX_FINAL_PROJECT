@@ -10,17 +10,18 @@ Lab 3 Minutes
 ### Previous Actions: Update on Individual Modules
 
 ### Current Items:
-Max - 3D printing, scoreboard
+Max - 3D printing, scoreboard, timer
 Marco - flex potentiometer
 Tom - LDR sensor, main C code
 Nadeesha - LIDAR distance measurement
 
 ### New Items:
 #### 3D printing: Max has booked in a session at the Susan Wakil 3D printers. 
-#### Scoreboard: The scoreboard has yet to be cosmetically improved as Max has been busy with MECH3660 project. 
-#### LIDAR: Nadeesha has not been able to get output to PuTTy. Max will push serial IO code to GitHub. 
+#### Scoreboard: The scoreboard has yet to be cosmetically improved as Max has been busy with MECH3660 project. Max has also been provided with a small LCD screen that can be used as a timer, as Tkinter is not suited to constantly refreshing a clock. This LCD screen will connect up to Max's Raspberry Pi and will communicate with the STM32 via serial. This is a new, separate module from the scoreboard.
+#### Timer: As above, Max will set up the Raspberry Pi LCD screen to display a timer for shooting via serial communication from the STM32 to the Raspberry Pi. 
+#### LIDAR: Nadeesha has not been able to get output to PuTTy. Max will push serial IO code to GitHub. Nadeesha has said that he will be able to get help from a friend over the weekend, to assist him with the LIDAR functionality and modularisation. 
 #### LDR: Tom will look into using the STM32 to set the threshold, to enable configuration. 
-#### Flex Potentiometer: 
-#### Main C code: Tom is working on bare-bones scaffold of the main C code, which will allow us to sub in the individual modules when they are completed. 
+#### Flex Potentiometer: Marco is still waiting on delivery. To demonstrate functionality, he is using a regular potentiometer. It currently employs a polling approach, which will not be suitable as the user will not always make the shot, therefore the program will not stop polling. Marco will investigate an interrupt based approach. This can be achieved by digitising the signal from the potentiometer on a breadboard, so that when the input pin reads HIGH, then an interrupt will fire. For the LDR, a 
+#### Main C code: Tom is working on bare-bones scaffold of the main C code, which will allow us to sub in the individual modules when they are completed.
 
 ### Next Meeting Date: 15/05/2024

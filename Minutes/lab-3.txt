@@ -1,0 +1,26 @@
+Lab 3 Minutes
+
+# MTRX Group 5 - "LeTron James"
+##  Date - 8/05/2024
+### Present: Max, Tom, Nadeesha, Marco
+### Apologies: 
+
+### Meeting Purpose: Update on Individual Modules
+
+### Previous Actions: Update on Individual Modules
+
+### Current Items:
+Max - 3D printing, scoreboard
+Marco - flex potentiometer
+Tom - LDR sensor, main C code
+Nadeesha - LIDAR distance measurement
+
+### New Items:
+#### 3D printing: Max has booked in a session at the Susan Wakil 3D printers. 
+#### Scoreboard: The scoreboard has yet to be cosmetically improved as Max has been busy with MECH3660 project. 
+#### LIDAR: Nadeesha has not been able to get output to PuTTy. Max will push serial IO code to GitHub. 
+#### LDR: Tom will look into using the STM32 to set the threshold, to enable configuration. 
+#### Flex Potentiometer: 
+#### Main C code: Tom is working on bare-bones scaffold of the main C code, which will allow us to sub in the individual modules when they are completed. 
+
+### Next Meeting Date: 15/05/2024

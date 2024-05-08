@@ -1,0 +1,25 @@
+Lab 1 Minutes
+
+# MTRX Group 5 - "LeTron James"
+##  Date - 1/05/2024
+### Present: Max (zoom), Marco (zoom), Nadeesha, Tom
+### Apologies: None
+
+### Meeting Purpose: Update on Progress with Individual Modules
+
+### Previous Actions: N/A
+
+### Current Items:
+Max - 3D printing, scoreboard
+Marco - flex potentiometer
+Tom - LDR sensor
+Nadeesha - LIDAR distance measurement
+
+### New Items:
+#### 3D printing: Max has signed up for AMME fablab induction, is waiting to be invited to canvas page. WIll explore possibility of using 3D printer in Susal Wakil building.
+#### Scoreboard: Scoreboard is functionally complete, with some cosmetic changes needed.
+#### LIDAR: LIDAR is reading, but Nadeesha has had difficulties outputting distance measurement via serial.
+#### LDR: LDR is functional - if covered up, then the LED in breadboard turns off. Connection to STM32 works too. 
+#### Flex Potentiometer: Marco's flex potentiometer was not working properly - he will source and buy another one before the next meeting. 
+
+### Next Meeting Date: 8/05/2024

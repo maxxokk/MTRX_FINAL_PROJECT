@@ -12,16 +12,15 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+//THESE FOUR LINES OF CODE MUST BE AT THE TOP OF THE MAIN FILE TO USE SERIAL IO
 uint8_t inpStr[2][BUFFER_SIZE] = {0};
 void (*inpDetect)(); //what to do when input is detected
 void (*received)(); //what to do once string is terminated
 void (*demonstrate)(); //how to show that the string has been input
+//DO NOT REMOVE
 
 int main(void)
 {
-//	exercise1();
-//	exercise2();
-//	exercise3();
-//	integration();
+
 }
 

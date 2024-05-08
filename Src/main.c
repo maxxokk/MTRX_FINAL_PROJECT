@@ -19,6 +19,8 @@ void (*received)(); //what to do once string is terminated
 void (*demonstrate)(); //how to show that the string has been input
 //DO NOT REMOVE
 
+//in PuTTY, select: Serial Input, COM<x> (find in device manager), Speed = 115200, Terminal->local echo = FORCE ON, Terminal->local line editing = FORCE OFF, Connection->serial->Flow control = None
+
 int main(void)
 {
 

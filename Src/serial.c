@@ -137,11 +137,11 @@ void SerialOut(uint8_t *data, SerialPort *serial_port) {
 	}
 
 	else {
+		out_serial = serial_port; //define the serial port to output to
 		strcpy(outStr, data); //copy data into the outStr array
 		enable_tx_interrupt(); //enable the transmit empty interrupt
 	}
 	strNum++; //add one to the strNum to represent one more string waiting to send
-	out_serial = serial_port; //define the serial port to output to
 }
 
 

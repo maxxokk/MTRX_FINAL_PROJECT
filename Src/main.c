@@ -23,6 +23,11 @@ void (*demonstrate)(); //how to show that the string has been input
 
 int main(void)
 {
+  SerialInitialise(BAUD_115200, &USART1_PORT, &finished_transmission);
+	enable_USART_interrupt();
 
+	SerialOut("Test\r\n", &USART1_PORT);
+
+	for(;;){} //loop here, waiting for interrupt
 }
 

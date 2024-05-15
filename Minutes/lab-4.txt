@@ -1,0 +1,27 @@
+Lab 4 Minutes
+
+# MTRX Group 5 - "LeTron James"
+##  Date - 15/05/2024
+### Present: Max, Tom, Nadeesha, Marco
+### Apologies: 
+
+### Meeting Purpose: Update on Individual Modules
+
+### Previous Actions: Update on Individual Modules
+
+### Current Items:
+Max - 3D printing, scoreboard, main C code, timer
+Marco - flex potentiometer
+Tom - LDR sensor, main C code
+Nadeesha - LIDAR distance measurement
+
+### New Items:
+#### 3D printing: First 3D print has been completed, second is booked in for Monday. The exact operation of the game has changed - instead of the user flicking the ball directly into the hoop, they will now flick it along the ground/table to a ramp which will lead up into a short 3cm high hoop. This is because it was too difficult to give the ball sufficient height. 
+#### Scoreboard: Scoreboard serial has been implemented. Some aesthetic polish still needed. 
+#### Timer: Timer will not happen as the nature of the game means that the time taken between shots is not under the control of the user. Rushing can also cause the ramp/hoop to move, which would defeat the purpose of the distance measurement. 
+#### LIDAR: Distance measurements are successfully coming through to PuTTy. Nadeesha will still need to polish off the modularity, and encapsulate all the code in a single function.
+#### LDR: Unfortunately Tom's board was broken this week, but the LDR module is largely complete. He will finish the ADC component in the STM32 before Monday. 
+#### Flex Potentiometer: Flex readings are coming through to the STM32. 
+#### Main C code: Max and Tom will continue on the main integration code this week. Scaffold should be complete before Monday to enable 'plugging in' the individual modules. 
+
+### Next Meeting Date: 20/05/2024

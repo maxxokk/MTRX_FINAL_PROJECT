@@ -158,6 +158,11 @@ void FullClear(SerialPort *serial_port) {
 	serial_port->UART->RQR |= USART_RQR_RXFRQ; //clear RXNE bit
 }
 
+volatile bool data_received = False;
+void waitForInput(void){
+	while(!data_received){}
+}
+
 int i = 0;
 void SerialInput(uint8_t data[2][BUFFER_SIZE], SerialPort *serial_port) {
 	if(!i && (serial_port->UART->ISR & USART_ISR_FE)||(serial_port->UART->ISR & USART_ISR_ORE)) {
@@ -188,6 +193,7 @@ void SerialInput(uint8_t data[2][BUFFER_SIZE], SerialPort *serial_port) {
 }
 
 void DoubleBuffer(uint8_t data[BUFFER_SIZE], int NumChar) {
+	memset(inpStr[1], 0, sizeof(inpStr[1]));
 	for(int j=0; j<NumChar; j++) {
 		inpStr[1][j] = data[j]; //transfer Kernel to User buffer
 	}

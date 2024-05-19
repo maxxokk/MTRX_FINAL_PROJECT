@@ -8,6 +8,8 @@
 #define NUM_2P 2 //number of 2 player game modes
 #define PACKET_SIZE 256 //max number of chars in packet to send to PC to update scoreboard
 
+extern uint8_t input[2][BUFFER_SIZE];
+
 
 typedef struct {
     uint8_t score;
@@ -134,20 +136,97 @@ void setDist(Game* gamePtr, uint8_t player){
 }
 
 bool LDR(void){
-    //Tom to write function that outputs TRUE when the ball is sitting on top of the holder i.e. when LDR is dark
+    //Tom to write function that outputs true when the ball is sitting on top of the holder i.e. when LDR is dark
 }
 
 bool flex(void){
-    //Marco to write function that outputs TRUE if the flex sensor flexes
+    //Marco to write function that outputs true if the flex sensor flexes
 }
 
-bool endCondition(Game* gamePtr){
-    if((gamePtr->p1->shots >= NUM_SHOTS)||(gamePtr->p2->shots >= NUM_SHOTS)){
-        return True;
+uint8_t endCondition(Game* gamePtr, uint8_t end_conds[4]){
+    max_shots = end_conds[0];
+    max_score = end_conds[1];
+    max_dist = end_conds[2];
+    endCond = end_conds[3];
+
+    bool p1_shots = false;
+    bool p2_shots = false;
+    bool p1_score = false;
+    bool p2_score = false;
+    bool p1_dist = false;
+    bool p2_dist = false;
+
+    bool result = false;
+
+    if(gamePtr->p1->shots >= max_shots){
+        p1_shots = true;
     }
-    else{
-        return False;
+    if(gamePtr->p2->shots >= max_shots){
+        p2_shots = true;
     }
+
+    if(gamePtr->p1->score >= max_score){
+        p1_score = true;
+    }
+    if(gamePtr->p2->score >= max_score){
+        p2_score = true;
+    }
+
+    if(gamePtr->p1->tot_dist >= max_dist){
+        p1_dist = true;
+    }
+    if(gamePtr->p2->tot_dist >= max_dist){
+        p2_dist = true;
+    }
+
+    if(gamePtr->==1){
+        result = 1 * p1_shots;
+    }
+
+    else if(gamePtr->mode == 2){
+        result = 0;
+    }
+
+    else if(gamePtr->mode == 3){
+        if(endCond == 1){
+            result = 1 * p1_shots;
+        }
+
+        else if(endCond == 2){
+            result = 1 * p1_score;
+        }
+
+        else if(endCond == 3){
+            result = 1 * p1_dist;
+        }
+
+        else{
+            result = 3;
+        }
+    }
+
+    else if(gamePtr->mode == -1){
+        result = (1 + (gamePtr->p2->tot_dist > gamePtr->p1->tot_dist))*(p1_dist || p2_dist);
+    }
+
+    else if(gamePtr->mode == -2){
+        result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_shots || p2_shots)
+    }
+
+    else if(gamePtr->mode == -3){
+        if(endCond == 1){
+            result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_shots && p2_shots && (gamePtr->p1->score != gamePtr->p2->score));
+        }
+
+        else if(endCond == 2){
+            result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_score || p2_score);
+        }
+
+        else if(endCond == 3){
+            result = (1 + (gamePtr->p2->tot_dist > gamePtr->p1->tot_dist))*(p1_dist || p2_dist);
+        }
+    }
+
 }
 
 void updateScoreboard(Game* gamePtr){
@@ -162,28 +241,86 @@ void updateScoreboard(Game* gamePtr){
     SerialOut(packet, &USART1_PORT);
 }
 
+uint8_t end_conds[4] = {0, 0, 0, 0};
+bool end_conds_set = false;
+
+void set_end_conds(uint8_t data[BUFFER_SIZE], int size){
+    end_conds[(data[0]-49)] = str2uint(data+1, size-1);
+    end_conds[3] = data[0]-49;
+    end_conds_set = true;
+}
+
+bool contSet = false;
+bool askCont = false;
+
+void askContinue(data[BUFFER_SIZE], int size){
+    if(data[0]==1){
+        askCont = true;
+    }
+    contSet = true;
+}
+
 void gameLoop(uint8_t data[BUFFER_SIZE], int size){
     extern demonstrate = NULL;
     gameMode = findGameMode(data, size);
 
     Game* gamePtr = startGame(gameMode);
 
-    if(gameMode == 1){
-        setDist(gamePtr, 0);
-        while(!LDR()){}
-
-        while(!endCondition()){
-            while(LDR()){}
-            shotTaken(gamePtr);
-            while(!LDR()){
-                if(flex(void)){
-                    score(gamePtr);
-                }
-            }
-        }
-
-
+    if(abs(gameMode)==3){
+        demonstrate = &set_end_conds;
+        SerialOut("R", &USART1_PORT);
+        while(!end_conds_set){}
     }
 
-    else if(gameMode)
+    else{
+        end_conds[0] = DEFAULT_SHOTS;
+        end_conds[1] = DEFAULT_SCORE;
+        end_conds[2] = DEFAULT_DIST;
+    }
+
+    if(gameMode > 0){
+        while(true){
+            if(gameMode == 1){
+                setDist(gamePtr, 0);
+                end_conds[3] = 1;
+            }
+            
+            else if(gameMode == 2){
+                gamePtr->p1->shot_dist = 1;
+            }
+
+            while(!LDR()){}
+
+            while(!endCondition(gamePtr, end_conds)){
+                while(LDR()){}
+                shotTaken(gamePtr);
+                while(!LDR()){
+                    if(flex()){
+                        score(gamePtr);
+                    }
+                }
+            }
+
+            if(endCondition(gamePtr, end_conds)==1){
+                SerialOut("W1", &USART1_PORT);
+            }
+
+            else if(endCondition(gamePtr, end_conds)==2){
+                SerialOut("W2", &USART1_PORT);
+            }
+
+            while(!contSet){
+                demonstrate = &askContinue;
+            }
+
+            if(askCont){
+                continueGame(gamePtr);
+                continue;
+            }
+
+            else{
+                return;
+            }
+        }
+    }
 }

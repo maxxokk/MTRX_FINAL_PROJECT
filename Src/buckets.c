@@ -10,22 +10,22 @@
 
 extern uint8_t input[2][BUFFER_SIZE];
 
-
+//all these values start/default to 0
 typedef struct {
-    uint8_t score;
-    uint8_t shots;
-    uint8_t shot_dist;
-    uint8_t tot_dist;
-    uint8_t pb_score;
-    uint8_t pb_shot_dist;
-    uint8_t pb_tot_dist;
+    uint8_t score; //how many the player has gotten in
+    uint8_t shots; //how many shots the player has taken
+    uint8_t shot_dist; //what distance is the player shooting from
+    uint8_t tot_dist; //distance the player is shooting from * score
+    uint8_t pb_score; //personal best score for the player
+    uint8_t pb_shot_dist; //personal best single shot distance for the player
+    uint8_t pb_tot_dist; //personal best total distance for the player
 } Player;
 
 typedef struct {
 	Player* p1;
     Player* p2;
     signed char mode; //1 player modes are positive, 2 player modes are negative
-    uint8_t turn;
+    uint8_t turn; //whos turn it is (0 = player 1, 1 = player 2).
 } Game;
 
 Player* setPlayer(Game* gamePtr, uint8_t p_index){
@@ -125,6 +125,7 @@ uint8_t str2uint(data[BUFFER_SIZE], int size){
     return result;
 }
 
+
 void setDist(Game* gamePtr, uint8_t player){
     Player* player = setPlayer(gamePtr, player);
 
@@ -141,8 +142,31 @@ bool LDR(void){
     //Tom to write function that outputs true when the ball is sitting on top of the holder i.e. when LDR is dark
 }
 
-bool flex(void){
-    //Marco to write function that outputs true if the flex sensor flexes
+void setup_gpio_PA6_INPUT() {
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;  // Enable GPIOA clock
+
+    // Configure PA6 as input
+    GPIOA->MODER &= ~(0x3 << (6 * 2));  // Clear mode bits for PA6 to set it as input
+
+    // No need to configure OTYPER for input mode
+    // No need to configure OSPEEDR for input mode
+    // Configure PUPDR as needed (e.g., no pull-up/pull-down, pull-up, or pull-down)
+    GPIOA->PUPDR &= ~(0x3 << (6 * 2));  // Ensure no pull-up or pull-down
+}
+
+bool flex(void) {
+    setup_gpio_PA6_INPUT();  // Ensure PA6 is configured as input
+
+    // Check if PA6 input is high
+    if (GPIOA->IDR & (1 << 6)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool button(void){
+
 }
 
 //check whether the game should end or not.

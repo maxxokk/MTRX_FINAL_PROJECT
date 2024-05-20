@@ -129,8 +129,7 @@ void setDist(Game* gamePtr, uint8_t player){
     Player* player = setPlayer(gamePtr, player);
 
     //Nadeesha to create function that inputs the distance from LIDAR every 0.5 seconds
-    //Output this distance via serial with a A in front of it if player = 0, or B if player = 1
-    // e.g. SerialOut("A500", &USART1_PORT) would be a distance of 500 (units dont matter) for player 0
+    //Output this distance via serial e.g. SerialOut("500", &USART1_PORT) would be a distance of 500 (units dont matter)
     //When the GPIO button on the STM32 is pressed:
         //stop taking distance measurements
         //output "D" via serial

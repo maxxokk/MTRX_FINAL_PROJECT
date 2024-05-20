@@ -79,7 +79,7 @@ void shotTaken(Game* gamePtr){
 }
 
 void switchTurn(Game* gamePtr){
-    game->turn = 1 - game->turn;
+    gamePtr->turn = 1 - gamePtr->turn;
 }
 
 Game* startGame(uint8_t gameMode) {
@@ -89,6 +89,7 @@ Game* startGame(uint8_t gameMode) {
 	return *gameState;
 }
 
+//reset necessary parameters if game is to be replayed
 void continueGame(Game* gamePtr){
     gamePtr->p1->score = 0;
     gamePtr->p1->tot_dist = 0;
@@ -96,12 +97,13 @@ void continueGame(Game* gamePtr){
     gamePtr->p2->score = 0;
     gamePtr->p2->tot_dist = 0;
 
-    static uint8_t first_turn = 0;
+    static uint8_t first_turn = 0; //which player gets the first turn alternates on successive rematches
     first_turn = 1 - first_turn;
 
     game_ptr->turn = first_turn;
 }
 
+//determine game mode number (range [-2, 2]) from serial input (range [1, 4])
 uint8_t findGameMode(data[BUFFER_SIZE], int size){
     uint8_t gameNumber = str2uint(data[BUFFER_SIZE], int size);
 
@@ -112,6 +114,7 @@ uint8_t findGameMode(data[BUFFER_SIZE], int size){
     return gameNumber;
 }
 
+//take str (array of chars) and convert to uint8_t
 uint8_t str2uint(data[BUFFER_SIZE], int size){
     uint8_t result = 0;
     for (int i = 0; i < size; i++) {
@@ -143,6 +146,10 @@ bool flex(void){
     //Marco to write function that outputs true if the flex sensor flexes
 }
 
+//check whether the game should end or not.
+//0 = continue game
+//1 = player 1 wins
+//2 = player 2 wins
 uint8_t endCondition(Game* gamePtr, uint8_t end_conds[4]){
     max_shots = end_conds[0];
     max_score = end_conds[1];
@@ -179,7 +186,7 @@ uint8_t endCondition(Game* gamePtr, uint8_t end_conds[4]){
         p2_dist = true;
     }
 
-    if(gamePtr->==1){
+    if(gamePtr->mode == 1){
         result = 1 * p1_shots;
     }
 
@@ -241,20 +248,26 @@ void updateScoreboard(Game* gamePtr){
     SerialOut(packet, &USART1_PORT);
 }
 
-uint8_t end_conds[4] = {0, 0, 0, 0};
-bool end_conds_set = false;
+uint8_t end_conds[4] = {0, 0, 0, 0}; //{<which condition to end game (0 = never end. 1 = shots, 2 = score, 3 = distance)>, <max_shots>, <max_score>, <max_tot_dist>}
+bool end_conds_set = false; //have the end conditions been set by the user? (Either manually or via gameMode selection)
 
 void set_end_conds(uint8_t data[BUFFER_SIZE], int size){
-    end_conds[(data[0]-49)] = str2uint(data+1, size-1);
-    end_conds[3] = data[0]-49;
+    uint8_t cond, val;
+    sscanf(data, "%d:%d", &cond, &val);
+
+    if(cond != 0){
+        end_conds[cond] = val;
+        end_conds[0] = cond;
+    }
+
     end_conds_set = true;
 }
 
-bool contSet = false;
-bool askCont = false;
+bool contSet = false; //has continue question been responded too?
+bool askCont = false; //does user want to continue?
 
 void askContinue(data[BUFFER_SIZE], int size){
-    if(data[0]==1){
+    if(data[0]=='1'){
         askCont = true;
     }
     contSet = true;
@@ -273,13 +286,32 @@ void gameLoop(uint8_t data[BUFFER_SIZE], int size){
     }
 
     else{
-        end_conds[0] = DEFAULT_SHOTS;
-        end_conds[1] = DEFAULT_SCORE;
-        end_conds[2] = DEFAULT_DIST;
+        end_conds[1] = DEFAULT_SHOTS;
+        end_conds[2] = DEFAULT_SCORE;
+        end_conds[3] = DEFAULT_DIST;
     }
+
+    if(gameMode == 1){
+        end_cond[0] = 1;
+    }
+
+    if(gameMode == 2){
+        end_cond[0] = 0;
+    }
+
+    if(gameMode == -1){
+        end_cond[0] = 3;
+    }
+
+    if(gameMode == -2){
+        end_cond[0] = 
+    }
+
+    if(gameMode ==)
 
     if(gameMode > 0){
         while(true){
+            gamePtr->turn = 0;
             if(gameMode == 1){
                 setDist(gamePtr, 0);
                 end_conds[3] = 1;
@@ -322,5 +354,9 @@ void gameLoop(uint8_t data[BUFFER_SIZE], int size){
                 return;
             }
         }
+    }
+
+    if(gameMode < 0){
+
     }
 }

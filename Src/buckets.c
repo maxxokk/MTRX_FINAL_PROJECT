@@ -155,83 +155,54 @@ uint8_t endCondition(Game* gamePtr, uint8_t end_conds[4]){
     max_dist = end_conds[2];
     endCond = end_conds[3];
 
-    bool p1_shots = false;
-    bool p2_shots = false;
-    bool p1_score = false;
-    bool p2_score = false;
-    bool p1_dist = false;
-    bool p2_dist = false;
+    uint8_t result = 0;
 
-    bool result = false;
+    bool p1_shots = (gamePtr->p1->shots >= max_shots); 
+    bool p2_shots = (gamePtr->p2->shots >= max_shots);
 
-    if(gamePtr->p1->shots >= max_shots){
-        p1_shots = true;
-    }
-    if(gamePtr->p2->shots >= max_shots){
-        p2_shots = true;
-    }
+    bool p1_score = (gamePtr->p1->score >= max_score);
+    bool p2_score = (gamePtr->p2->score >= max_score);
 
-    if(gamePtr->p1->score >= max_score){
-        p1_score = true;
-    }
-    if(gamePtr->p2->score >= max_score){
-        p2_score = true;
-    }
+    bool p1_dist = (gamePtr->p1->tot_dist >= max_dist);
+    bool p2_dist = (gamePtr->p2->tot_dist >= max_dist);
 
-    if(gamePtr->p1->tot_dist >= max_dist){
-        p1_dist = true;
-    }
-    if(gamePtr->p2->tot_dist >= max_dist){
-        p2_dist = true;
-    }
-
-    if(gamePtr->mode == 1){
-        result = 1 * p1_shots;
-    }
-
-    else if(gamePtr->mode == 2){
-        result = 0;
-    }
-
-    else if(gamePtr->mode == 3){
-        if(endCond == 1){
-            result = 1 * p1_shots;
+    if(gamePtr->mode > 0){
+        if(endCond == 1){ //once player has made max amnt of shots, end game
+            result = p1_shots; 
         }
 
-        else if(endCond == 2){
-            result = 1 * p1_score;
+        else if(endCond == 2){ //once player has reached a certain score, end game
+            result = p1_score;
         }
 
-        else if(endCond == 3){
-            result = 1 * p1_dist;
+        else if(endCond == 3){ //once player has reached a certain distance, end game
+            result = p1_dist;
         }
 
-        else{
+        else if(endCond != 0){ //if 0, then result remains 0 (i.e. never end). If not 0, 1, 2, or 3: return 3 as an error result
             result = 3;
         }
     }
 
-    else if(gamePtr->mode == -1){
-        result = (1 + (gamePtr->p2->tot_dist > gamePtr->p1->tot_dist))*(p1_dist || p2_dist);
-    }
-
-    else if(gamePtr->mode == -2){
-        result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_shots || p2_shots)
-    }
-
-    else if(gamePtr->mode == -3){
-        if(endCond == 1){
+    else if(gamePtr->mode < 0){
+        if(endCond == 1){ //players get a certain amount of shots. If scores are tied after each player has made the max shots, then play continues
             result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_shots && p2_shots && (gamePtr->p1->score != gamePtr->p2->score));
         }
 
-        else if(endCond == 2){
+        else if(endCond == 2){ //player who reaches given score first wins
             result = (1 + (gamePtr->p2->score > gamePtr->p1->score))*(p1_score || p2_score);
         }
 
-        else if(endCond == 3){
+        else if(endCond == 3){ //playe who reaches given total distance first wins
             result = (1 + (gamePtr->p2->tot_dist > gamePtr->p1->tot_dist))*(p1_dist || p2_dist);
         }
+
+        else if(endCond!=0){ //if 0, then result remains 0 (i.e. never end). If not 0, 1, 2, or 3: return 3 as an error result
+            result = 3;
+        }
     }
+    
+    return result;
 
 }
 
@@ -303,10 +274,8 @@ void gameLoop(uint8_t data[BUFFER_SIZE], int size){
     }
 
     if(gameMode == -2){
-        end_cond[0] = 
+        end_cond[0] = 1;
     }
-
-    if(gameMode ==)
 
     if(gameMode > 0){
         while(true){
@@ -332,12 +301,17 @@ void gameLoop(uint8_t data[BUFFER_SIZE], int size){
                 }
             }
 
-            if(endCondition(gamePtr, end_conds)==1){
-                SerialOut("W1", &USART1_PORT);
+            uint8_t winner = endCondition(gamePtr, end_conds);
+            if(winner == 1){
+                SerialOut("W1", &USART1_PORT); //tell scoreboard to display 'player 1 wins'
             }
 
-            else if(endCondition(gamePtr, end_conds)==2){
-                SerialOut("W2", &USART1_PORT);
+            else if(winner == 2){
+                SerialOut("W2", &USART1_PORT); //tell scoreboard to display 'player 2 wins'
+            }
+
+            else if(winner == 3){
+                return; //error - end condition (endCond[0]) not 0, 1, or 2. 
             }
 
             while(!contSet){

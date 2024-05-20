@@ -143,6 +143,29 @@ bool LDR(void){
 
 bool flex(void){
     //Marco to write function that outputs true if the flex sensor flexes
+	void setup_gpio_PA6_INPUT() {
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;  // Enable GPIOA clock
+
+    // Configure PA6 as input
+    GPIOA->MODER &= ~(0x3 << (6 * 2));  // Clear mode bits for PA6 to set it as input
+
+    // No need to configure OTYPER for input mode
+    // No need to configure OSPEEDR for input mode
+    // Configure PUPDR as needed (e.g., no pull-up/pull-down, pull-up, or pull-down)
+    GPIOA->PUPDR &= ~(0x3 << (6 * 2));  // Ensure no pull-up or pull-down
+}
+
+
+    setup_gpio_PA6_INPUT();  // Ensure PA6 is configured as input
+
+    // Check if PA6 input is high
+    if (GPIOA->IDR & (1 << 6)) {
+        return true;
+    } else {
+        return false;
+    }
+
+
 }
 
 //check whether the game should end or not.

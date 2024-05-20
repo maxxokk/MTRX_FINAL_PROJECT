@@ -1,0 +1,26 @@
+Lab 4.1 Minutes (Meeting outside of lab time)
+
+# MTRX Group 5 - "LeTron James"
+##  Date - 20/05/2024
+### Present: Max, Tom, Nadeesha, Marco
+### Apologies: 
+
+### Meeting Purpose: Combining Individual Modules (Integration)
+
+### Previous Actions: Update on Individual Modules
+
+### Current Items:
+Max - 3D printing, scoreboard, main C code
+Marco - flex potentiometer
+Tom - LDR sensor
+Nadeesha - LIDAR distance measurement
+
+### New Items:
+#### 3D printing: Ramp is currently being printed, and will be picked up tomorrow for our next meeting
+#### Scoreboard: The serial output to the scoreboard is now implemented using a packet of information. This needs to be fully implemented, and also needs some aesthetic polish. 
+#### LIDAR: getDistance and setDistance functions are now implemented and working. Someone in the group will bring in a piece of cardboard which will go behind the backboard to ensure the sensor acquires an accurate measurement. 
+#### LDR: Tom has function which uses polling approach, and is working on a function that will output whether the ball is on the stand or not (as a Boolean). 
+#### Flex Potentiometer: Flex sensor module is implemented. 
+#### Main C code: Standard game mode has been programmed. Other game modes to be completed before next meeting. 
+
+### Next Meeting Date: 21/05/2024

@@ -1,0 +1,11 @@
+../Inc/flex.c:9:6:enable_clocks	1
+../Inc/flex.c:14:6:initialise_board	1
+../Inc/flex.c:21:10:ReadADC	2
+../Inc/flex.c:43:6:delay_ms	2
+../Inc/flex.c:37:6:ContinuousReadSingleChannelADC	6
+../Inc/flex.c:136:6:setup_gpio_PA3_OUTPUT	1
+../Inc/flex.c:155:6:setup_gpio_PA6_INPUT	1
+../Inc/flex.c:167:6:flex	2
+../Inc/flex.c:182:6:setup_gpio_PA8_PA9	1
+../Inc/flex.c:213:6:start_pwm_2_buzzers	3
+../Inc/flex.c:236:6:setup_timer2_pwm	1

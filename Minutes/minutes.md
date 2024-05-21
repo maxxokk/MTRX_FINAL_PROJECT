@@ -39,7 +39,7 @@ Nadeesha - LIDAR distance measurement
 
 ### New Items:
 #### 3D printing: 
-Max has signed up for AMME fablab induction, is waiting to be invited to canvas page. WIll explore possibility of using 3D printer in Susal Wakil building.
+Max has signed up for AMME fablab induction, is waiting to be invited to canvas page. WIll explore possibility of using 3D printer in Susan Wakil building.
 #### Scoreboard: 
 Scoreboard is functionally complete, with some cosmetic changes needed.
 #### LIDAR: 

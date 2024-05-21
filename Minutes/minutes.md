@@ -30,8 +30,11 @@ Lab 2 Minutes
 
 ### Current Items:
 Max - 3D printing, scoreboard
+
 Marco - flex potentiometer
+
 Tom - LDR sensor
+
 Nadeesha - LIDAR distance measurement
 
 ### New Items:

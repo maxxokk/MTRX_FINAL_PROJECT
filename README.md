@@ -69,10 +69,10 @@ The LDR is attached to the ball holder. This allows us to know at all times when
 ### Valid input
 Valid input is an analog signal that goes through an LDR to PA1.
 ### Functions and modularity
-# void initialise_board()
+### void initialise_board()
 Initialises the board for PA1 as input and PA4 as output. The LED output registers are also initialised for debugging purposes.
 
-# void ContinuousReadSingleChannelADC()
+### void ContinuousReadSingleChannelADC()
 This function initialises and calibrates the ADC, and reads the input from PA1. It then sets a trigger point based off the initial light on the LDR, then sets boundaries for ADC->DR value considered HIGH and LOW. It then outputs this high or low value through PA4, which is used in the main game loop.
 
 

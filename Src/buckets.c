@@ -140,7 +140,7 @@ void setDist(Game* gamePtr, uint8_t player){
 
 void Init_PA4(){
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Probably isn't needed as clocks will already be initialised i assume
-	GPIOA->MODER &= ~(GPIO_MODER_MODER4); // Clear PA4
+	GPIOA->MODER &= ~(GPIO_MODER_MODER4); // Clear mode bits for PA4 to set it as input
 	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR4); // Clear pupdr
 }
 

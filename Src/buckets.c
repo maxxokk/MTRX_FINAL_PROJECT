@@ -138,8 +138,19 @@ void setDist(Game* gamePtr, uint8_t player){
         //return from function
 }
 
-bool LDR(void){
-    //Tom to write function that outputs true when the ball is sitting on top of the holder i.e. when LDR is dark
+void Init_PA4(){
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Probably isn't needed as clocks will already be initialised i assume
+	GPIOA->MODER &= ~(GPIO_MODER_MODER4); // Clear PA4
+	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR4); // Clear pupdr
+}
+
+bool LDR(void) {
+   if (GPIOA->IDR & GPIO_IDR_4) {
+       return true;
+   }
+   else {
+       return false;
+   }
 }
 
 void setup_gpio_PA6_INPUT() {

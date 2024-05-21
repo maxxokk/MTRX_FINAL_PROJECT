@@ -68,7 +68,7 @@ LDR is used to determine whether the ball is in the holder. If the ball is in th
 The LDR is attached to the ball holder. This allows us to know at all times when the ball is in the holder. The code used is partly taken from W07-C-Analog-input of the MTRX2700 Github. It uses the ContinuousReadSingleChannelADC function to determine the state of the system based off the voltage of PA1 that is connected to the LDR. From the LDR input, the function also implements a trigger value, above which is high, and below is low. There is also bounded conditions to prevent it flickering between HIGH and LOW. When it is considered HIGH, the output pin PA4 is set also to high.
 ### Valid input
 Valid input is an analog signal that goes through an LDR to PA1.
-### Functions and modularity
+#### Functions and modularity
 ### void initialise_board()
 Initialises the board for PA1 as input and PA4 as output. The LED output registers are also initialised for debugging purposes.
 

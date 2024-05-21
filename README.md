@@ -84,13 +84,58 @@ The function uses the input from PA1, and gives output through PA4 on the STM32f
 ### Testing
 To test the ADC performance, an LED in the STM32f3Discovery is turned on for HIGH input, and off for LOW input. This allows us to test the performance of input for the LDR, which tells us when the system thinks the ball is in the holder. An output LED on a breadboard can also be used to test the output of PA4, which should be HIGH, whenever the ADC tells us its HIGH. This tells us when the system is outputting HIGH and LOW into the game loop.
 
-## Module 3: flexi potentiometer module
+## Module 3: Flex Resistor and Buzzers module
 ### Summary
+This code is designed to manage ADC readings from a flex resistor, control LEDs in order to visualize some readings , and operate buzzers using PWM. It enables clocks for various GPIO ports, configures them as inputs or outputs, and continuously reads ADC values from the flex resistor, beeping the buzzers based on the ADC input.
+
 ### Usage
+Initialization:
+
+- Enable necessary clocks for GPIO ports.
+- Initialize board I/O, setting specific GPIO pins as outputs (LED's).
+- Configure ADC and start continuous reading.
+- Set up GPIO pins for output (e.g., PA3) and alternate functions for PWM (PA8, PA9).
+
+Operation:
+- Continuously read ADC values from Flex resistor.
+- Update LEDs based on ADC values.
+- Control buzzers using PWM based on specific ADC thresholds (when the FLex resistor gets a determinate value).
 ### Valid input
+- ADC Channel: The code reads from a specified ADC channel (PA0).
+- GPIO Pins: Configures specific pins (PA3, PA8, PA9) for output or alternate function.
+- PWM Parameters: Frequency and duty cycle values for PWM control, designed for the buzzers
+
 ### Functions and modularity
-#### Digital_Io Module 
+
+Clock and Board Initialization:
+
+enable_clocks(): Enables clocks for GPIOA, GPIOC, and GPIOE.
+initialise_board(): Initializes GPIOE pins 8-15 as outputs. (LED's)
+
+ADC Operations:
+
+ReadADC(uint32_t channel): Reads ADC value from specified channel.
+ContinuousReadSingleChannelADC(): Continuously reads ADC values, updates LEDs, and controls buzzers when input from Flex resistors.
+
+GPIO Configuration:
+
+setup_gpio_pa3(): Configures PA3 as a GPIO output to send a HIGH signal to the main board.
+on_adc_value_change(): Handles ADC value changes (placeholder for user-defined actions).
+
+PWM Configuration for Buzzers:
+
+setup_timer2_pwm(): Sets up Timer 2 for PWM, one for each buzzer.
+start_pwm_2_buzzers(uint32_t frequency, uint32_t duty_cycle): Starts PWM on PA8 and PA9 with specified frequency and duty cycle.
+setup_gpio_PA8_PA9(): Configures PA8 and PA9 as output for alternate function mode for PWM.
+
 ### Testing
+Initial Setup: Verify that clocks for GPIOA, GPIOC, and GPIOE are enabled.
+GPIO Configuration: Check that GPIOE pins 8-15 are set as outputs and PA3 is set as output.
+ADC Reading: Test ADC readings from specified channels and ensure accurate digital conversion.
+LED Control: Verify LEDs on GPIOE are updated based on ADC values. Each time Flex resistor bends according to the game LD5 should be on.
+PWM for Buzzers: Test PWM signals on PA8 and PA9 to ensure correct frequency and duty cycle operation.
+On main board:
+Flex Sensor Input: Check the input state of PA6 and ensure correct boolean output.
 
 ## Module 4: LIDAR module
 ### Summary

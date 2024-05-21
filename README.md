@@ -63,7 +63,7 @@ minimum - 30cm    maximimum 300cm
 
 ## Module 2: LDR Sensor module
 ### Summary
-LDR is used to determine whether the ball is in the holder. If the ball is in the holder, then a basket will not count for that player, as this would be impossible for the ball to be both in the hoop and in the holder at the same time. This allows for us to know which player shot the ball. It also prevents certain illegal moves, where the flex sensor is activated but the ball is in the holder.
+LDR is used to determine whether the ball is in the holder. If the ball is in the holder, then a basket will not count for that player, as this would be impossible for the ball to be both in the hoop and in the holder at the same time. It also prevents certain illegal moves, where the flex sensor is activated but the ball is in the holder.
 ### Usage
 The LDR is attached to the ball holder. This allows us to know at all times when the ball is in the holder. The code used is partly taken from W07-C-Analog-input of the MTRX2700 Github. It uses the ContinuousReadSingleChannelADC function to determine the state of the system based off the voltage of PA1 that is connected to the LDR. From the LDR input, the function also implements a trigger value, above which is high, and below is low. There is also bounded conditions to prevent it flickering between HIGH and LOW. When it is considered HIGH, the output pin PA4 is set also to high.
 ### Valid input

@@ -75,10 +75,10 @@ Initialises the board for PA1 as input and PA4 as output. The LED output registe
 #### void ContinuousReadSingleChannelADC()
 This function initialises and calibrates the ADC, and reads the input from PA1. It then sets a trigger point based off the initial light on the LDR, then sets boundaries for ADC->DR value considered HIGH and LOW. It then outputs this high or low value through PA4, which is used in the main game loop.
 
-``void ContinuousReadSingleChannelADC() {
-}``
 
 ### Digital_Io Module 
+#### void ContinuousReadSingleChannelADC()
+The function uses the input from PA1, and gives output through PA4 on the STM32f3Discovery.
 
 ### Testing
 To test the ADC performance, an LED in the STM32f3Discovery is turned on for HIGH input, and off for LOW input. This allows us to test the performance of input for the LDR, which tells us when the system thinks the ball is in the holder. An output LED on a breadboard can also be used to test the output of PA4, which should be HIGH, whenever the ADC tells us its HIGH. This tells us when the system is outputting HIGH and LOW into the game loop.

@@ -153,7 +153,7 @@ Flex Sensor Input: Check the input state of PA6 and ensure correct boolean outpu
 ### Functions and modularity
 
 #### Player* setPlayer(Game* gamePtr, uint8_t p_index)
-Given a pointer to a game, and a player index, this function will return a pointer to the player who's turn it is. This is used in many of the functions, where we want to 
+Given a pointer to a game, and a player index, this function will return a pointer to the player who's turn it is. This is used in many of the functions, where we want to access the player who's turn it is.
 
 #### Digital_Io Module 
 ### Testing

@@ -6,7 +6,7 @@ The C Lab assignment is comprised of creating a carnival game. Our team decided 
 - Max
 - Nadeesha Perera (510585347)
 - Tom
-- Marco
+- Marco Jara
 
 ## Roles & Responsibilities
 ### Max:

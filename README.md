@@ -24,7 +24,8 @@ The C Lab assignment is comprised of creating a carnival game. Our team decided 
 - Documentation 
 
 ### Marco:
-- Implementation of Flex potentiometer modules
+- Implementation of Flex Resistor module
+- Implementation of Buzzers module.
 - Documentation 
 
 ## Design Breakdown

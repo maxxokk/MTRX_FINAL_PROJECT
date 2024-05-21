@@ -75,7 +75,8 @@ Initialises the board for PA1 as input and PA4 as output. The LED output registe
 #### void ContinuousReadSingleChannelADC()
 This function initialises and calibrates the ADC, and reads the input from PA1. It then sets a trigger point based off the initial light on the LDR, then sets boundaries for ADC->DR value considered HIGH and LOW. It then outputs this high or low value through PA4, which is used in the main game loop.
 
-`asdf`
+`void ContinuousReadSingleChannelADC() {
+}`
 
 ### Digital_Io Module 
 

@@ -177,6 +177,9 @@ Returns true when the flex sensor is triggered, ie when the ball enters the hoop
 #### bool LDR()
 Returns true when light on LDR is above a trigger point, ie when the ball is not on the holder. Returns false when ball is on holder.
 
+#### Game* startGame(uint8_t gameMode)
+This initialises a game with zeroes for all scores and returns a pointer to the game
+
 
 #### Digital_Io Module 
 ### Testing

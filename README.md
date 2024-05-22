@@ -194,4 +194,4 @@ This is the main game loop function which will run the game.
 
 
 ### Testing
-
+Testing is completed by connecting all modules to their respective ports and running the main file. A button can be used instead of connecting the modules for debugging purposes.

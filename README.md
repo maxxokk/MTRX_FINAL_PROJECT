@@ -89,7 +89,7 @@ The function uses the input from PA1, and gives output through PA4 on the STM32f
 
 
 ### Testing
-To test the ADC performance, an LED in the STM32f3Discovery is turned on for HIGH input, and off for LOW input. This allows us to test the performance of input for the LDR, which tells us when the system thinks the ball is in the holder. An output LED on a breadboard can also be used to test the output of PA4, which should be HIGH, whenever the ADC tells us its HIGH. This tells us when the system is outputting HIGH and LOW into the game loop.
+To test the ADC performance, run the LDR module, connect an LDR input from a breadboard or similar setup into PA1, and an LED in the STM32f3Discovery is turned on for HIGH input, and off for LOW input. This allows us to test the performance of input for the LDR, which tells us when the system thinks the ball is in the holder. An output LED on a breadboard can also be used to test the output of PA4, which should be HIGH, whenever the ADC tells us its HIGH. This tells us when the system is outputting HIGH and LOW into the game loop.
 
 ## Module 3: Flex Resistor and Buzzers module
 ### Summary

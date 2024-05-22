@@ -1,0 +1,16 @@
+../Core/Src/buckets.c:18:6:button	4	static
+../Core/Src/buckets.c:25:9:setPlayer	24	static
+../Core/Src/buckets.c:42:9:getScore	24	static
+../Core/Src/buckets.c:48:6:score	24	static
+../Core/Src/buckets.c:70:6:shotTaken	24	static
+../Core/Src/buckets.c:78:6:switchTurn	16	static
+../Core/Src/buckets.c:82:7:startGame	64	static
+../Core/Src/buckets.c:94:6:continueGame	16	static
+../Core/Src/buckets.c:108:9:findGameMode	24	static
+../Core/Src/buckets.c:119:9:str2uint	32	static
+../Core/Src/buckets.c:130:6:setDist	152	static
+../Core/Src/buckets.c:174:9:endCondition	32	static
+../Core/Src/buckets.c:231:6:updateScoreboard	352	static
+../Core/Src/buckets.c:242:6:set_end_conds	24	static
+../Core/Src/buckets.c:257:6:askContinue	16	static
+../Core/Src/buckets.c:264:6:gameLoop	64	static

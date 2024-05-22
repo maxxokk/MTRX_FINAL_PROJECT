@@ -168,6 +168,12 @@ The player holds all data relevant to a player in the game. This includes their 
 #### struct Game
 The struct game, holds two pointers to each player, the game mode, and whos turn it is.
 
+#### bool flex()
+Returns true when the flex sensor is triggered, ie when the ball enters the hoop. False otherwise.
+
+#### bool LDR()
+Returns true when light on LDR is above a trigger point, ie when the ball is not on the holder. Returns false when ball is on holder.
+
 
 #### Digital_Io Module 
 ### Testing

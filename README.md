@@ -94,8 +94,15 @@ The function uses the input from PA1, and gives output through PA4 on the STM32f
 To test the ADC performance, run the LDR module, connect an LDR input from a breadboard or similar setup into PA1, and an LED in the STM32f3Discovery is turned on for HIGH input, and off for LOW input. This allows us to test the performance of input for the LDR, which tells us when the system thinks the ball is in the holder. An output LED on a breadboard can also be used to test the output of PA4, which should be HIGH, whenever the ADC tells us its HIGH. This tells us when the system is outputting HIGH and LOW into the game loop.
 
 ## Module 3: Flex Resistor and Buzzers module
+
 ### Summary
 This code is designed to manage ADC readings from a flex resistor, control LEDs in order to visualize some readings , and operate buzzers using PWM. It enables clocks for various GPIO ports, configures them as inputs or outputs, and continuously reads ADC values from the flex resistor, beeping the buzzers based on the ADC input.
+
+### Schematics
+The following schematic represents the module. Arduino board represents the STM32 with A1, D8 and D9 representing PA1, PA8 and PA9 respectivly.
+
+![image](https://github.com/maxxokk/MTRX_FINAL_PROJECT/assets/162090860/f93666ef-4a2a-49e8-9e4d-15d18f3446e0)
+
 
 ### Usage
 Initialization:

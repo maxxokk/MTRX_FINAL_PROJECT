@@ -42,6 +42,8 @@ In the get_distance function , it commands the LiDAR to perform a measurement, R
 ### Valid input
 Valid input is running the project and calling on the function
 
+![/img/LIDAR.png](/img/LIDAR.png)
+
 LIDAR wiring -  
    ground to ground x2
    SDA to pB7  

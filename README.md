@@ -162,6 +162,12 @@ Given a pointer to a game, and a player index, this function will return a point
 #### void score(Game* gamePtr)
 This is called when a player scores a basket. It will update the score for that player by adding 1 to their score and update the total distance by adding the distance of the last shot to the cumulative distance for that player. It will also update personal bests for score, single shot distance, and total distance.
 
+#### struct Player;
+The player holds all data relevant to a player in the game. This includes their score, shots taken, current shot distance, cumulative made shots distance, personal best score, personal best single shot distance, and personal best total cumulative distance.
+
+#### struct Game
+The struct game, holds two pointers to each player, the game mode, and whos turn it is.
+
 
 #### Digital_Io Module 
 ### Testing

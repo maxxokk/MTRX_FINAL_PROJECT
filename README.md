@@ -43,7 +43,7 @@ In the get_distance function , it commands the LiDAR to perform a measurement, R
 Valid input is running the project and calling on the function
 
 ![/img/LIDAR.png](/img/LIDAR.png)
-
+In above diagram the arduino board represents the microcontroller, the wiring is written on top of the respective wires
 LIDAR wiring -  
    ground to ground x2
    SDA to pB7  
@@ -157,6 +157,7 @@ Flex Sensor Input: Check the input state of PA6 and ensure correct boolean outpu
 
 ## Integration of modules
 ### Summary
+
 ### Usage
 ### Valid input
 ### Functions and modularity

@@ -1,12 +1,12 @@
 # MTRX_FINAL_PROJECT  Team "Letron Games"
 ## Project Details:
-The C Lab assignment is comprised of creating a carnival game. Our team decided on a shoots and hoop game similar to the basketball.the project consists of 4 modules which are  LIDAR, Flex potentiometer , LDR sensor and ........
+The C Lab assignment is comprised of creating a carnival game. Our team decided on a shoots and hoop game similar to the basketball.the project consists of 4 modules which are  LIDAR, Flex potentiometer , LDR sensor and Scoreboard module
 
 ## Group Members
-- Max
+- Max O'Keefe (520453711)
 - Nadeesha Perera (510585347)
 - Tom Bray (510426888)
-- Marco Jara
+- Marco Jara (460328865)
 
 ## Roles & Responsibilities
 ### Max:
@@ -42,6 +42,12 @@ In the get_distance function , it commands the LiDAR to perform a measurement, R
 ### Valid input
 Valid input is running the project and calling on the function
 
+LIDAR wiring -  
+   ground to ground x2
+   SDA to pB7  
+   SCL to pB6 
+   LASPWM to PA8
+
 ### Functions and modularity
 The project has one module – LIDAR Module
 
@@ -53,12 +59,10 @@ The project has one module – LIDAR Module
 
 ### Testing
 - check if the serial output is working by sending it to a terminal (putty)
-- holding a board  away from the lidar snesor andd checking if the measurement is accurate
+- holding a board  away from the lidar sensor andd checking if the measurement is accurate
 - repeating the above task but slowly moving further away
 - checking the minimum and maximum diatcance for accarcy of the sensor
 minimum - 30cm    maximimum 300cm
-
-
 
 
 
@@ -137,7 +141,7 @@ PWM for Buzzers: Test PWM signals on PA8 and PA9 to ensure correct frequency and
 On main board:
 Flex Sensor Input: Check the input state of PA6 and ensure correct boolean output.
 
-## Module 4: LIDAR module
+## Module 4: Scoreboard module
 ### Summary
 ### Usage
 ### Valid input

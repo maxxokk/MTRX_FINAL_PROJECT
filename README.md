@@ -85,7 +85,7 @@ This function initialises and calibrates the ADC, and reads the input from PA1. 
 #### void ContinuousReadSingleChannelADC()
 The function uses the input from PA1, and gives output through PA4 on the STM32f3Discovery.
 
-![/img/ldr.png](/img/ldr.png)
+![/img/ldr1.png](/img/ldr1.png)
 
 
 ### Testing

@@ -183,7 +183,12 @@ This initialises a game with zeroes for all scores and returns a pointer to the 
 #### void continueGame(Game* gamePtr)
 This function is called if a game is to be replayed, in which case it resets all scores to zero except personal best statistics.
 
+#### void gameLoop(uint8_t data[BUFFER_SIZE], int size)
+This is the main game loop function which will run the game. 
 
 
-#### Digital_Io Module 
+#### Digital_Io Module
+
+
 ### Testing
+
